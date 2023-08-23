@@ -254,6 +254,7 @@ p{
   margin: 0;
   padding: 10px;
   text-align: start;
+  line-height: 1.5;
 }
 #replay-button{
   position: static;
