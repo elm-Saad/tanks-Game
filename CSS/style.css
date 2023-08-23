@@ -1,0 +1,426 @@
+:root{
+  --Background-Color:	#333333;
+  --card-bg:	#584356;
+  --card-seconnd-bg:	#382e37;
+  --white-color:#fff;
+}
+*,*::after,*::before {
+    box-sizing: border-box;
+}
+html, body {
+  padding: 0;
+  margin: 0;    
+  background: radial-gradient(circle, var(--Background-Color) 0%, var(--Background-Color) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color:var(--white-color);
+  font-family: 'MedievalSharp', sans-serif;
+}
+main {
+  display:grid;
+  grid-template:25% 50% 25%/ minmax(230px, 400px);
+  max-height: 100vh;
+  height: 100vh;
+  padding: 1em;
+} 
+.character-card {
+  height: 100%;
+  padding: 1vh 1vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 1.6rem;
+  color: var(--white-color);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+}
+.info-card{
+  height: 70%;
+  display: grid;
+  grid-template:100px/30% 70%;
+  border-radius: 8px;
+}
+.info-card img{
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  height: 100%;
+}
+.character-img{
+  background-color: var(--white-color);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.power-container img {
+  width: 100%;
+  height: 100%;
+}
+.health-info{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.health-bar-outer {
+  background: #171217;
+  height: 1vh;
+  width:90%;
+  margin: 0 5%;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.health-info span{
+ font-size: 14px;
+ display: flex;
+}
+.health-info span i{
+  margin-left: 2px;
+}
+.health-bar-outer .health-bar-inner {
+  background: #f5f5f5;
+  height: 100%;
+  border-radius: 2px;
+}
+.health-bar-outer .health-bar-inner.danger{
+  background:#d1435f;
+}
+.health-info span.danger{
+  color:#d1435f;
+}
+.dice-container,.power-container {
+  height: 50%;
+  width:100%;
+  margin: 0;
+  background: var(--card-seconnd-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  perspective: 1000px;
+}
+.dice-container{
+  border-top-right-radius:8px ;
+}
+.power-container {
+  border-bottom-right-radius:8px ;
+}
+.power-dice,
+.number,
+.placeholder-dice{
+  height:5.5vh;
+  width:5.5vh;
+  background: var(--white-color);   
+  border-radius: 5px;
+  overflow: hidden;
+}
+.number, .placeholder-dice{
+  text-align: center;
+  line-height: 6vh;
+  border:1px solid #b1b1b1;
+  transform-style: preserve-3d;
+}
+.dice-container .placeholder-dice{
+  background-color: transparent;
+}
+.number{
+  animation: flipAnimation 1s forwards;
+}
+.battle-field{    
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  text-align: center;
+  position: relative;
+  background-color: #2727277a;
+  border-radius: 8px;
+  padding: 4px;
+}
+  
+.tank-container {
+  position: relative;
+}
+.tank {
+  max-width:100%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transform-origin: center center;
+}
+.face-down{
+  transform: rotate(90deg);
+}
+.face-up{
+  transform: rotate(20deg);
+}
+.firewall{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.level{
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--white-color);
+  text-shadow: 0 0 5px var(--white-color);
+}
+.firewall-img:nth-child(1){
+  animation: firewallAnimation 4s forwards;
+}
+.firewall-img:nth-child(2){
+  animation: firewallAnimation 2.8s forwards;
+}
+.firewall-img:nth-child(3){
+  animation: firewallAnimation 3.5s forwards;
+}
+.firewall-img:nth-child(1),
+.firewall-img:nth-child(2),
+.firewall-img:nth-child(3){
+  animation-delay: 1s;
+  opacity: 0;
+}
+.fireball {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #000000;
+  border-radius: 50%;
+  animation: fireballAnimation 1.5s ease-in-out forwards;
+  opacity: 1;
+}
+
+.hero-side .tank-container .fireball {
+  left: 30%;
+  top: 30%;
+  animation-name: fireballHeroAnimation;
+}
+.enemy-side .tank-container .fireball {
+  right: 30%;
+  top: 30%;
+  animation-name: fireballEnemyAnimation;
+}
+#attack-button,
+#replay-button{
+    position: absolute;
+    top: calc(50% - 2.5vh);
+    right: 5px;
+    font-family: 'MedievalSharp', cursive;
+    background-color: #00755E;
+    border: 2px solid #fff;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    color:#fff;
+    height:5vh;
+    box-shadow: 0px 6px 10px -4px rgba(0,0,0,0.4);
+}
+
+/*end game*/
+
+.endGame{
+  display: grid;
+  grid-template:250px 50px auto 50px/ minmax(290px,520px);
+  text-align: center;
+  margin-top: 20px;
+  max-height: 100vh;
+  position: relative;
+}
+.end-img{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  grid-row: 1/2;
+  border-radius: 8px;
+  animation: enterFromTheSide 1s forwards;
+}
+h2{
+  margin: 10px;
+  grid-row: 2/3;
+  text-shadow: 0 0 5px rgb(252, 252, 252);
+}
+p{
+  grid-row: 3/4;
+  margin: 0;
+  padding: 10px;
+  text-align: start;
+}
+#replay-button{
+  position: static;
+  margin: 0 auto;
+  grid-row: 4;
+  align-self: center;
+
+}
+/* animation */
+
+@keyframes flipAnimation {
+    0%{
+      transform: rotateY(0deg);
+      color: #fff;
+    }
+    16.66% {
+      transform: rotateY(180deg);
+    }
+    33.33% {
+      transform: rotateY(360deg);
+    }
+    50% {
+      transform: rotateY(540deg);
+    }
+    66.66% {
+      transform: rotateY(720deg);
+    }
+    83.33% {
+      transform: rotateY(900deg);
+      color: #fff;
+    }
+    100% {
+      transform: rotateY(0deg);
+      color:#000721;
+    }
+}
+@keyframes fadeOutAnimation  {
+    0%,50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+@keyframes fireballHeroAnimation {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  90% {
+    opacity: 1;
+    transform: translate(100px, 20vh);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(100px, 20vh);
+  } 
+}
+@keyframes fireballEnemyAnimation {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  90% {
+    opacity: 1;
+    transform: translate(-80px, -20vh);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-80px, -20vh);
+  } 
+}
+
+@keyframes fireballAnimation {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1.5);
+    }
+}
+@keyframes firewallAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50%{
+    opacity: 1;
+    transform: scale(2.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+@keyframes enterFromTheSide {
+  0%{
+    left: -300%;
+  }
+  100%{
+    left: 0%;
+  } 
+}
+/* media */
+@media(min-width:550px){
+  main {
+    grid-template:30vh /45% 45%;
+    gap: 10%;
+    width: 90vw;
+    max-width: 900px;
+    margin: 0 auto;
+  } 
+  .character-card {
+    grid-row: 1/2;
+  }
+  .info-card{
+    grid-template:120px/30% 70% ;
+  }
+  .battle-field{
+    grid-row:2;
+    grid-column: 1/-1;
+    flex-direction: row;
+    align-items: center;
+  }
+  .face-down,.face-up{
+    transform: rotate(0deg);
+  }
+  .firewall{
+    width: 10%;
+    height: 100%;
+    flex-direction: column;
+  }
+  #attack-button {
+      width: 80px;
+      top: 35%;
+      right: calc(50% - 40px);
+  }
+  @keyframes fireballHeroAnimation {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0);
+    }
+    80% {
+      opacity: 1;
+      transform: translate(40vw, -100px);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(40vw, -100px);
+    } 
+  }
+  @keyframes fireballEnemyAnimation {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0);
+    }
+    80% {
+      opacity: 1;
+      transform: translate(-40vw, -130px);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-40vw, -130px);
+    } 
+  }
+} 
