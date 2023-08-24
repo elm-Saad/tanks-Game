@@ -163,7 +163,7 @@ main {
   justify-content: space-around;
   align-items: center;
 }
-.level{
+.Level{
   font-size: 3rem;
   font-weight: bold;
   color: var(--white-color);

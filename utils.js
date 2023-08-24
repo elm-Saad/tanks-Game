@@ -21,15 +21,15 @@ function getPowerHtml(data){
     `
     ).join("")
 }
-function getBattelFiealdHtml(level) {
+function getBattelFiealdHtml(Level) {
     return `<div class="hero-side">
                 <div class="tank-container">
                 <img class="tank face-down" src="images/tank-2.png">
 
                 </div>
             </div>
-            <span class="level">
-            Levle ${level}
+            <span class="Level">
+            Level ${Level}
             </span>
             <div class="enemy-side">
                 <div class="tank-container">
