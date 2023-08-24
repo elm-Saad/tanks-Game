@@ -16,7 +16,7 @@ const characterData = {
         isDead: false,
         diceCount: 1,
         currentDiceScore: [],
-        level :1,
+        Level :1,
         powerImg :["images/fire.jpg"]
 
     },
@@ -27,7 +27,7 @@ const characterData = {
         isDead: false,
         diceCount: 2,
         currentDiceScore: [],
-        level :2,
+        Level :2,
         powerImg :["images/fire.jpg","images/laser.jpg"]
     },
     enemy_3: {
@@ -37,7 +37,7 @@ const characterData = {
         isDead: false,
         diceCount: 3,
         currentDiceScore: [],
-        level :3,
+        Level :3,
         powerImg :["images/fire.jpg","images/laser.jpg","images/lightning.jpg"]
 
     }

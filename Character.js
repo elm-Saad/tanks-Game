@@ -62,7 +62,7 @@ function Character(data) {
             </div>`
     }
 
-    this.getBattelFiealdHtml = ()=> {return getBattelFiealdHtml(this.level)}
+    this.getBattelFiealdHtml = ()=> {return getBattelFiealdHtml(this.Level)}
 
     this.getAnimatedBattelFiealdHtml = function() {
         this.getBattelFiealdHtml =()=>{
